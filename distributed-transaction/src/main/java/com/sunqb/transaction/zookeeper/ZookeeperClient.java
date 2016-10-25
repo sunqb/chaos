@@ -16,8 +16,9 @@ public interface ZookeeperClient {
      * 新增节点
      * @param path 节点路径
      * @param ephemeral 是否为临时节点
+     * @param data 数据
      */
-    void create(String path, boolean ephemeral);
+    void create(String path, boolean ephemeral, String data);
 
     /**
      * 删除节点
@@ -75,5 +76,5 @@ public interface ZookeeperClient {
      * 获取ZooKeeper连接信息
      * @return
      */
-    URL getURL();
+    String getAddress();
 }

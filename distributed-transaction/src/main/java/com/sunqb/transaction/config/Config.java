@@ -8,33 +8,34 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * 配置信息和常量
  * Created by sunqingbiao on 2016/8/24.
  */
 public class Config {
 
-    private final static Logger logger = LoggerFactory.getLogger(Config.class);
+    /**
+     * zk重试策略的间隔时间(ms)
+     */
+    public final static int ZK_BASESLEEP_TIME_MS = 1000;
 
-    private final static String DEFAULT_ROOT = "distributed-transaction";
+    /**
+     * zk最大重试次数
+     */
+    public final static int ZK_MAX_RETRIES = 3;
 
-    private final String root;
+    /**
+     * zk的session超时时间(ms)
+     */
+    public final static int ZK_SESSION_TIMEOUT_MS = 5000;
 
-    // private final Set<String> anyServices = new ConcurrentHashSet<String>();
-    //
-    // private final ConcurrentMap<URL, ConcurrentMap<NotifyListener, ChildListener>> zkListeners = new
-    // ConcurrentHashMap<URL, ConcurrentMap<NotifyListener, ChildListener>>();
+    /**
+     * 根节点
+     */
+    public final static String ZK_DEFAULT_ROOT = "distributed-transaction";
 
-    private final CuratorFramework zkClient;
-
-    public Config(String connectionString, String rootPath) {
-        if(StringUtils.isBlank(rootPath)){
-            root = DEFAULT_ROOT;
-        }else{
-            root = rootPath;
-        }
-
-        zkClient = CuratorFrameworkFactory.builder().connectString(connectionString)
-                .sessionTimeoutMs(5000).retryPolicy(new ExponentialBackoffRetry(1000, 3)).build();
-    }
-
+    /**
+     * 默认数据
+     */
+    public final static String ZK_DEFAULT_DATA = "init";
 
 }
