@@ -18,21 +18,21 @@ public interface ZookeeperClient {
      * @param ephemeral 是否为临时节点
      * @param data 数据
      */
-    void create(String path, boolean ephemeral, String data);
+    void create(String path, boolean ephemeral, String data) throws Exception;
 
     /**
      * 删除节点
      * @param path 节点路径
      * @param cascade 是否级联删除
      */
-    void delete(String path, boolean cascade);
+    void delete(String path, boolean cascade) throws Exception;
 
     /**
      * 获取指定路径下的子节点列表
      * @param path 节点路径
      * @return List<String>
      */
-    List<String> getChildren(String path);
+    List<String> getChildren(String path) throws Exception;
 
     /**
      * 为指定路径添加子节点变更监听器
@@ -40,7 +40,7 @@ public interface ZookeeperClient {
      * @param listener 子节点变更监听器
      * @return
      */
-    List<String> addChildrenListener(String path, ChildrenListener listener);
+    void addChildrenListener(String path, ChildrenListener listener);
 
     /**
      * 移除指定节点的指定监听器
@@ -77,4 +77,26 @@ public interface ZookeeperClient {
      * @return
      */
     String getAddress();
+
+    /**
+     * 查看节点是否存在
+     * @param path 节点路径
+     * @return
+     */
+    boolean isExistsNode(String path) throws Exception;
+
+    /**
+     * 获取节点的值
+     * @param path 节点路径
+     * @param codec 编码
+     * @return
+     */
+    String getNodeValue(String path, String codec) throws Exception;
+
+    /**
+     * 更新节点的值
+     * @param path 节点路径
+     * @param newData 新的数据
+     */
+    void updateNodeValue(String path, String newData) throws Exception;
 }

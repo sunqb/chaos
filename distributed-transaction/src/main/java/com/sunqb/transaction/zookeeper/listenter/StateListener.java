@@ -10,17 +10,4 @@ import java.util.List;
  */
 public interface StateListener extends ConnectionStateListener {
 
-    /**
-     * 已断开连接状态
-     */
-    int DISCONNECTED = 0;
-    /**
-     * 已连接状态
-     */
-    int CONNECTED = 1;
-    /**
-     * 重新连接状态
-     */
-    int RECONNECTED = 2;
-
 }
